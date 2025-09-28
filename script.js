@@ -8,10 +8,10 @@ const apps = [
         [7598572, 'Сферум Android', 'https://sun9-6.userapi.com/IkdFMjfnmJl4HJBmooU5si87hJDQsnzp0AsNuA/FJOGudRv_KM.jpg', '', 132],
         [7571751, 'VK Education iOS', 'https://sun9-6.userapi.com/IkdFMjfnmJl4HJBmooU5si87hJDQsnzp0AsNuA/FJOGudRv_KM.jpg', '', 132],
         [7793118, 'Звонки ВКонтакте', 'https://sun9-70.userapi.com/tLjtkuMT7KLnrF5Y6oLWde6d28VukfCSXD7U8g/9QgR70ZKFG8.jpg', '', 132],
-        [6287487, 'vk.com', 'https://sun9-26.userapi.com/R01NieP5YFWfLuBeXh16HsCY8wV6_Se_ZWbDfA/8YNxS0zNoFc.jpg', '', 132],
+        [6287487, 'vk.ru', 'https://sun9-26.userapi.com/R01NieP5YFWfLuBeXh16HsCY8wV6_Se_ZWbDfA/8YNxS0zNoFc.jpg', '', 132],
         [7799655, 'VK Почта', 'https://sun9-72.userapi.com/GmN1wML-yv_PWHSbmTQ5-zVukaItizcL3M3_Xw/y4fC58Uj6lg.jpg', '', 132],
         [7539952, 'Почта Mail.ru', 'https://sun9-37.userapi.com/mAVW07zs1VXCpH8q-vwccaIyz3pZ49JkW1-8eQ/G87utOTbowo.jpg', 'Почта', 132],
-        [7497650, 'VK Connect', 'https://vk.com/images/dquestion_a.png', '', 132],
+        [7497650, 'VK Connect', 'https://vk.ru/images/dquestion_a.png', '', 132],
         [5530956, 'Prisma', 'https://pp.userapi.com/c633324/v633324499/3a9b0/8ZaEuKGfypU.jpg', 'Почувствуй себя художником! Преврати фотографии в уникальные произведения искусства:<br>— Фильтры в стиле художников<br>— Завораживающие фотоэффекты<br>— Делись шедеврами в одно нажатие', 288],
         [3698024, 'Instagram', 'https://pp.userapi.com/c633227/v633227376/33212/KU3LDlKwxo0.jpg', 'Мобильное приложение для публикации фотографий.', 240],
         [2685278, 'Kate Mobile', 'https://pp.userapi.com/c412825/v412825174/6522/nEKTkD_Uqcg.jpg', 'ВКонтакте для Android', 132],
@@ -133,5 +133,5 @@ function addPermissions(arr, el) {
 }
 
 function auth(app, scope = 1073737727, groups = false) {
-    window.open('https://oauth.vk.com/authorize?client_id=' + app + '&scope=' + scope + '&redirect_uri=https://oauth.vk.com/blank.html&display=page&response_type=token' + (groups ? '&group_ids=' + groups.replace(/[^0-9\,]/gim, '') : '&revoke=1'));
+    window.open('https://oauth.vk.ru/authorize?client_id=' + app + '&scope=' + scope + '&redirect_uri=https://oauth.vk.ru/blank.html&display=page&response_type=token' + (groups ? '&group_ids=' + groups.replace(/[^0-9\,]/gim, '') : '&revoke=1'));
 }
