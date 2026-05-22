@@ -134,7 +134,7 @@ function addPermissions(arr, el) {
 
 function auth(app, scope, groups = false) {
     if (Number(app) === MARUSYA_APP_ID) {
-        alert('ВНИМАНИЕ!\n\nПохоже что токен через Марусю возможно адекватно получить ТОЛЬКО с компьютера, но вы можете попробовать и с телефона!\n\nТОКЕН В ПРИМЕРЕ НИЖЕ ФЕЙКОВЫЙ.\n\nЕсли после этого шага Ваша полученная ссылка не выглядит примерно (не точь в точь!) так и не содержит слово "access_token", виноват ВК. Попробуйте снова, если она выглядит совершенно иначе!\n\nhttps://oauth.vk.ru/blank.html#access_token=vk1.a.a71U6wFhY6D5Z3k4EaeRnKLx_eHdu7_BnbdsqoENQGaAMMXWC9b0FC8&expires_in=0&user_id=399328194&email=email@email.com');
+        alert('ВНИМАНИЕ!\n\nЕсли после этого шага (и авторизации в ВК) Ваша ссылка не выглядит примерно так (не точь в точь!) и не содержит слово "access_token", дружно виним ВК, ибо так быть не должно.\n\nВ таком случае попробуйте снова с самого начала.\n\nПример ссылки:\nhttps://oauth.vk.ru/blank.html#access_token=vk1.a.a71U6wFhY6D5Z3k4EaeRnKLx_eHdu7_BnbdsqoENQGaAMMXWC9b0FC8&expires_in=0&user_id=399328194&email=email@email.com');
     }
 
     scope = (scope === undefined ? (Number(app) === MARUSYA_APP_ID ? DEFAULT_SCOPE : FULL_SCOPE) : scope);
