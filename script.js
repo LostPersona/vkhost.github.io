@@ -1,11 +1,13 @@
 'use strict'
 
-const apps = [
-        [5776857, 'VK Admin (iOS)', 'https://pp.userapi.com/c831308/v831308960/d4af9/0o-EVdYjXmk.jpg', 'Приложение для организации обратной связи с клиентами, пользователями и подписчиками Ваших сообществ.', 330],
+const MARUSYA_APP_ID = 6463690,
+    DEFAULT_SCOPE_IDS = [12, 16],
+    DEFAULT_SCOPE = DEFAULT_SCOPE_IDS.reduce((scope, id) => scope + Math.pow(2, id), 0),
+    FULL_SCOPE = 1073737727,
+    apps = [
         [6463690, 'Маруся', 'https://sun9-56.userapi.com/Zbl1njzBDZ4v9shXbclysDxLjeG7KHgYFAlwMw/rb-hbmdVyxI.jpg', 'Медиапоиск', 132],
         [7556576, 'Сферум', 'https://sun9-6.userapi.com/IkdFMjfnmJl4HJBmooU5si87hJDQsnzp0AsNuA/FJOGudRv_KM.jpg', '', 132],
         [7598572, 'Сферум Android', 'https://sun9-6.userapi.com/IkdFMjfnmJl4HJBmooU5si87hJDQsnzp0AsNuA/FJOGudRv_KM.jpg', '', 132],
-        [7571751, 'VK Education iOS', 'https://sun9-6.userapi.com/IkdFMjfnmJl4HJBmooU5si87hJDQsnzp0AsNuA/FJOGudRv_KM.jpg', '', 132],
         [7793118, 'Звонки ВКонтакте', 'https://sun9-70.userapi.com/tLjtkuMT7KLnrF5Y6oLWde6d28VukfCSXD7U8g/9QgR70ZKFG8.jpg', '', 132],
         [7799655, 'VK Почта', 'https://sun9-72.userapi.com/GmN1wML-yv_PWHSbmTQ5-zVukaItizcL3M3_Xw/y4fC58Uj6lg.jpg', '', 132],
         [7539952, 'Почта Mail.ru', 'https://sun9-37.userapi.com/mAVW07zs1VXCpH8q-vwccaIyz3pZ49JkW1-8eQ/G87utOTbowo.jpg', 'Почта', 132],
@@ -127,10 +129,14 @@ function showOptions(d) {
 }
 
 function addPermissions(arr, el) {
-    const defaultScopes = [12, 16];
-    arr.map(type => el.insertAdjacentHTML('beforeend', '<input type="checkbox" id="' + el.id + '_' + type[0] + '" class="pcheck" scope="' + type[0] + '" ' + (defaultScopes.includes(type[0]) ? 'checked' : '') + '><label for="' + el.id + '_' + type[0] + '" class="btn" title="' + type[2] + '' + (type[3] ? ' (' + type[3] + ')' : '') + '">' + type[1] + '</label>'));
+    arr.map(type => el.insertAdjacentHTML('beforeend', '<input type="checkbox" id="' + el.id + '_' + type[0] + '" class="pcheck" scope="' + type[0] + '" ' + (DEFAULT_SCOPE_IDS.includes(type[0]) ? 'checked' : '') + '><label for="' + el.id + '_' + type[0] + '" class="btn" title="' + type[2] + '' + (type[3] ? ' (' + type[3] + ')' : '') + '">' + type[1] + '</label>'));
 }
 
-function auth(app, scope = 1073737727, groups = false) {
+function auth(app, scope, groups = false) {
+    if (Number(app) === MARUSYA_APP_ID) {
+        alert('ВНИМАНИЕ!\n\nПохоже что токен через Марусю возможно адекватно получить ТОЛЬКО с компьютера, но вы можете попробовать и с телефона!\n\nТОКЕН В ПРИМЕРЕ НИЖЕ ФЕЙКОВЫЙ.\n\nЕсли после этого шага Ваша полученная ссылка не выглядит примерно (не точь в точь!) так и не содержит слово "access_token", виноват ВК. Попробуйте снова, если она выглядит совершенно иначе!\n\nhttps://oauth.vk.ru/blank.html#access_token=vk1.a.a71U6wFhY6D5Z3k4EaeRnKLx_eHdu7_BnbdsqoENQGaAMMXWC9b0FC8&expires_in=0&user_id=399328194&email=email@email.com');
+    }
+
+    scope = (scope === undefined ? (Number(app) === MARUSYA_APP_ID ? DEFAULT_SCOPE : FULL_SCOPE) : scope);
     window.open('https://oauth.vk.ru/authorize?client_id=' + app + '&scope=' + scope + '&redirect_uri=https://oauth.vk.ru/blank.html&display=page&response_type=token' + (groups ? '&group_ids=' + groups.replace(/[^0-9\,]/gim, '') : '&revoke=1'));
 }
